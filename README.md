@@ -60,20 +60,20 @@ Holds configuration
 
 To run the Minesweeper game fully on Windows, you'll need to adjust the code to handle Windows-specific message boxes using ctypes. This change is necessary for displaying a native message box with "Abort", "Retry", and "Ignore" options when a mine is clicked. Ensure you have Python and Tkinter installed. Modify the show_mine method in cell.py to use ctypes.windll.user32.MessageBoxW. Here's a snippet to get you started:
 
-'''python
-
-import ctypes
-
-def show_mine(self):
-    self.cell_btn_object.configure(bg="red")
-    response = ctypes.windll.user32.MessageBoxW(0, "You clicked on a mine!", "Game Over", 3)
-    if response == 4:  # Retry
-        self.root.destroy()
-        main()  # Restart the game; ensure `main` function wraps the game's start logic
-    elif response == 3:  # Abort
-        self.root.destroy()
-    # Ignore option will do nothing
-'''
+   ```python
+   
+   import ctypes
+   
+   def show_mine(self):
+       self.cell_btn_object.configure(bg="red")
+       response = ctypes.windll.user32.MessageBoxW(0, "You clicked on a mine!", "Game Over", 3)
+       if response == 4:  # Retry
+           self.root.destroy()
+           main()  # Restart the game; ensure `main` function wraps the game's start logic
+       elif response == 3:  # Abort
+           self.root.destroy()
+       # Ignore option will do nothing
+   ```
 Integrating this code will provide a familiar dialog interface on Windows. Ensure thorough testing on both Linux and Windows for compatibility.
 
 
